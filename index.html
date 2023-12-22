@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Country Capital Finder</title>
+    <style>
+        #capital {
+            font-size: 35px;
+            font-weight: bold;
+            color: blue;
+        }
+        h1{
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            padding-bottom: 20px;
+            text-decoration:underline;
+            color: rgb(36, 36, 144);
+            font-size: 40px;
+
+        }
+        #countrySelect{
+            font-family:cursive;
+            border-radius: 10%;
+            border-width:2px;
+            box-shadow: 100px;
+            
+        }
+        #countrySelect:hover{
+            scale: 125%;
+            transition-duration: 1000ms;
+        }
+        section{
+            text-align: center;
+            font-family: cursive;
+            /* background-color: beige; */
+            height:100vh;
+            margin-top:0;
+            padding:0;
+        }
+        body{
+            /* background-color: beige; */
+            background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(59,107,98,0.5439425770308124) 47%, rgba(0,212,255,1) 100%);
+            background-repeat: none;
+            background-size: 100%;
+        }
+        .country{
+           padding-right: 20px;
+           font-size: 30px;
+           
+        }
+        .box{
+            margin:200px;
+            border:2px solid black;
+            box-shadow: 200px;
+            width:50%;
+            height:70vh;
+            margin-left:25%;
+            background-color: beige;
+        }
+        #capital{
+            font-size: 25px;
+        
+            
+        }
+        .cc{
+            font-size:25px;
+            padding-right: 160px;
+            
+        }
+        .ct{
+            margin-top: 20px;
+        }
+        #flag{
+            width:200px;
+            height:200px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+    <div class="box" id="box">
+    <h1>Country Capital Finder</h1>
+    <label for="countrySelect" class="country">Select a Country:</label>
+    <select  id="countrySelect" onchange="displayFlagandCapital()">
+        <option value="0">Select a country</option>
+        <option value="USA">United States</option>
+        <option value="Canada">Canada</option>
+        <option value="UK">United Kingdom</option>
+       
+    </div>
+    </select>
+    <div class="ct">
+    <p class="cc">Capital: <span id="capital"></span></p></div>
+    <div ><img id="flag" src="./images/all.jpeg" alt="flag"></div>
+</section>
+    <script>
+        const countryCapitals = {
+            USA: "Washington, D.C.",
+            Canada: "Ottawa",
+            UK: "London",
+            France: "Paris",
+            Germany: "Berlin"
+        };
+        const countryFlags = {
+            USA: "./images/america.jpeg",
+            Canada: "./images/canada2.webp",
+            UK: "./images/Flag_of_the_United_Kingdom.svg.webp"
+           
+        };
+
+        function displayCapital() {
+            var selectBox = document.getElementById("countrySelect");
+            var capitalDisplay = document.getElementById("capital");
+            var selectedCountry = selectBox.options[selectBox.selectedIndex].value;
+
+            var capital = countryCapitals[selectedCountry] || "Unknown";
+            capitalDisplay.textContent = capital;
+        }
+        const countryBackgrounds = {
+        USA: "url(./images/america.jpeg)",
+        Canada: "url(./images/canada2.webp)",
+        UK: "url(./images/uk_background.jpg)"
+    };
+        function displayFlagandCapital() {
+    var selectBox = document.getElementById("countrySelect");
+    var capitalDisplay = document.getElementById("capital");
+    var flagImage = document.getElementById("flag");
+    var selectedCountry = selectBox.options[selectBox.selectedIndex].value;
+
+    var capital = countryCapitals[selectedCountry] || "Unknown";
+    var flagURL = countryFlags[selectedCountry] || "";
+
+    capitalDisplay.textContent = capital;
+
+    // Set the flag image source
+    flagImage.src = flagURL;
+    document.body.style.backgroundImage = countryBackgrounds[selectedCountry] || '';
+    }
+
+    </script>
+</body>
+</html>
